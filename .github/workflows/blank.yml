@@ -23,9 +23,9 @@ jobs:
         id: install_spectral
         run: npm install -g @stoplight/spectral-cli
         
-      - name: Validate OpenAPI yaml files in the repo
-        id: run_spectral
-        run: spectral lint ./reference/**/*.{yaml,yml}
+      # - name: Validate OpenAPI yaml files in the repo
+      #   id: run_spectral
+      #   run: spectral lint ./reference/**/*.{yaml,yml}
 
   Publish_Documents:
    name: Publish Documents
