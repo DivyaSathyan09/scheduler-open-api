@@ -4,3 +4,4 @@ filepaths:
     reference/service/amion_Interface/amionInterface.yaml
   bundledOpenAPI:
     dist/amionInterface.yaml
+    
