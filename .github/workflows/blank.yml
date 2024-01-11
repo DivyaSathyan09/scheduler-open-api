@@ -19,7 +19,7 @@ jobs:
         node-version: '14'
 
     - name: Set working directory
-      run: cd scheduler-open-api
+      run: reference
 
     - name: Install Dependencies
       run: npm install
