@@ -71,7 +71,7 @@ jobs:
        run: |
         ls -R $GITHUB_WORKSPACE
      - name: Generate HTML Documentation
-       run: redoc-cli bundle -o output_file.html input_openapi_file.yaml
+       run: redoc-cli bundle@0.10.3 $GITHUB_WORKSPACE/dist.yaml -o out/dist.html
      - name: Generate OpenApi JSON File
        run: npx @redocly/openapi-cli bundle --output out/dist.json --ext json $GITHUB_WORKSPACE/dist.yaml
      - name: Move OpenApi YAML File to 'out' Folder
@@ -94,6 +94,5 @@ jobs:
        with:
         # message: 'Check [published HTML api documentation](GITHUB_WORKSPACE/C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface-o out/openapi.html), [published openapi JSON file](out/openapi.json), [published openapi YAML file](reference/service/amion_Interface/amionInterface.yaml)}'
         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
         message: 'Check [published HTML api documentation](dist.html), [published openapi JSON file](dist.json), [published openapi YAML file](dist.yaml) for the PR-${{env.PR_NUMBER}}'
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
