@@ -10,9 +10,6 @@ jobs:
     name: Lint OpenAPI Files  
     # runs-on: [self-hosted, linux, java]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./react
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
       - uses: actions/checkout@v3
@@ -70,7 +67,7 @@ jobs:
        uses: actions/upload-artifact@v3
        with:
          name: Combined_OpenApi_File
-         path: $GITHUB_WORKSPACE/reference/filepaths.yaml
+         path: C:/divya/work/scheduler-open-api/scheduler-open-api/reference/filepaths.yaml
      - name: List contents of the workspace
        run: |
         ls -R $GITHUB_WORKSPACE
