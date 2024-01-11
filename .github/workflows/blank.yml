@@ -67,7 +67,7 @@ jobs:
        uses: actions/upload-artifact@v3
        with:
          name: Combined_OpenApi_File
-         path: amionInterface.yml
+         path: openapi.yaml
      - name: List contents of the workspace
        run: |
         ls -R $GITHUB_WORKSPACE
