@@ -98,4 +98,3 @@ jobs:
 
           # message: 'Check [published HTML api documentation](${{env.Document_URL}}/openapi.html), [published openapi JSON file](${{env.Document_URL}}/openapi.json), [published openapi YAML file](${{env.Document_URL}}/openapi.yaml) for the PR-${{env.PR_NUMBER}}'
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-
