@@ -69,7 +69,7 @@ jobs:
          name: Combined_OpenApi_File
          path: openapi.yaml
      - name: Generate HTML Documentation
-       run: redoc-cli bundle $GITHUB_WORKSPACE/openapi.yaml -o out/openapi.html
+       run: redoc-cli bundle $GITHUB_WORKSPACE/filepaths.yaml -o out/filepaths.html
      - name: Generate OpenApi JSON File
        run: npx @redocly/openapi-cli bundle --output out/openapi.json --ext json $GITHUB_WORKSPACE/openapi.yaml
      - name: Move OpenApi YAML File to 'out' Folder
