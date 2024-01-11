@@ -58,8 +58,7 @@ jobs:
      - name: Install redoc-cli
        run: npm install -g redoc-cli
      - name: Bundle OpenApi Files     
-       run:  echo "OpenAPI_File_Paths=${{env.OpenAPI_File_Paths}}"
-            npx @redocly/cli bundle@0.10.3 --output dist --ext yaml ${{env.OpenAPI_File_Paths}}
+       run: npx @redocly/openapi-cli bundle --output dist --ext yaml ${{env.OpenAPI_File_Paths}}
      - name: Join OpenApi Files
        run:  echo "OpenAPI_File_Paths=${{env.OpenAPI_File_Paths}}"
         npx @redocly/cli bundle@0.10.3 --output dist --ext yaml ${{env.Bundled_OpenAPI_File_Paths}}
@@ -67,16 +66,16 @@ jobs:
        uses: actions/upload-artifact@v3
        with:
          name: Combined_OpenApi_File
-         path: reference/service/amion_Interface/amionInterface.yaml
+         path: dist.yaml
      - name: List contents of the workspace
        run: |
         ls -R $GITHUB_WORKSPACE
      - name: Generate HTML Documentation
-       run: redoc-cli bundle@0.10.3 $GITHUB_WORKSPACE/C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface-o out/openapi.html
+       run: redoc-cli bundle@0.10.3 $GITHUB_WORKSPACE/dist.yaml -o out/dist.html
      - name: Generate OpenApi JSON File
-       run: npx @redocly/openapi-cli bundle --output out/openapi.json --ext json $GITHUB_WORKSPACE
+       run: npx @redocly/openapi-cli bundle --output out/dist.json --ext json $GITHUB_WORKSPACE/dist.yaml
      - name: Move OpenApi YAML File to 'out' Folder
-       run: npx @redocly/openapi-cli bundle --output out/openapi.yaml --ext yaml $GITHUB_WORKSPACE
+       run: npx @redocly/openapi-cli bundle --output out/dist.yaml --ext yaml $GITHUB_WORKSPACE/dist.yaml
      - name: Set PR Number  
        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
     #  - name: Upload OpenApi HTML,JSON and YAML files to azure
@@ -96,5 +95,5 @@ jobs:
         # message: 'Check [published HTML api documentation](GITHUB_WORKSPACE/C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface-o out/openapi.html), [published openapi JSON file](out/openapi.json), [published openapi YAML file](reference/service/amion_Interface/amionInterface.yaml)}'
         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-        message: 'Check [published HTML api documentation](${{env.Document_URL}}/openapi.html), [published openapi JSON file](${{env.Document_URL}}/openapi.json), [published openapi YAML file](${{env.Document_URL}}/openapi.yaml) for the PR-${{env.PR_NUMBER}}'
+        message: 'Check [published HTML api documentation](dist.html), [published openapi JSON file](dist.json), [published openapi YAML file](dist.yaml) for the PR-${{env.PR_NUMBER}}'
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
