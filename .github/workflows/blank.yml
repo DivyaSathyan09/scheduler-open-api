@@ -61,8 +61,8 @@ jobs:
        run:  echo "OpenAPI_File_Paths=${{env.OpenAPI_File_Paths}}"
             npx @redocly/cli bundle@0.10.3 --output dist --ext yaml ${{env.OpenAPI_File_Paths}}
      - name: Join OpenApi Files
-       run:  echo "OpenAPI_File_Paths=${{env.OpenAPI_File_Paths}}"
-        npx @redocly/cli bundle@0.10.3 --output dist --ext yaml ${{env.OpenAPI_File_Paths}}
+       run:  echo "OpenAPI_File_Paths=${{env.C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface}}"
+        npx @redocly/cli bundle@0.10.3 --output dist --ext yaml ${{env.C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface}}
      - name: Upload Combined OpenApi File 
        uses: actions/upload-artifact@v3
        with:
@@ -72,7 +72,7 @@ jobs:
        run: |
         ls -R $GITHUB_WORKSPACE
      - name: Generate HTML Documentation
-       run: redoc-cli bundle@0.10.3 $GITHUB_WORKSPACE/reference/service/amion_Interface-o out/openapi.html
+       run: redoc-cli bundle@0.10.3 $GITHUB_WORKSPACE/C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface-o out/openapi.html
      - name: Generate OpenApi JSON File
        run: npx @redocly/openapi-cli bundle --output out/openapi.json --ext json $GITHUB_WORKSPACE
      - name: Move OpenApi YAML File to 'out' Folder
