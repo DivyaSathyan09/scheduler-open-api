@@ -59,10 +59,10 @@ jobs:
        run: npm install -g redoc-cli
      - name: Bundle OpenApi Files     
        run:  echo "OpenAPI_File_Paths=${{env.OpenAPI_File_Paths}}"
-            npx @redocly/cli bundle --output dist --ext yaml ${{env.OpenAPI_File_Paths}}
+            npx @redocly/cli bundle@0.10.3 --output dist --ext yaml ${{env.OpenAPI_File_Paths}}
      - name: Join OpenApi Files
        run:  echo "OpenAPI_File_Paths=${{env.OpenAPI_File_Paths}}"
-        npx @redocly/cli bundle --output dist --ext yaml ${{env.OpenAPI_File_Paths}}
+        npx @redocly/cli bundle@0.10.3 --output dist --ext yaml ${{env.OpenAPI_File_Paths}}
      - name: Upload Combined OpenApi File 
        uses: actions/upload-artifact@v3
        with:
@@ -72,11 +72,11 @@ jobs:
        run: |
         ls -R $GITHUB_WORKSPACE
      - name: Generate HTML Documentation
-       run: redoc-cli bundle $GITHUB_WORKSPACE -o out/openapi.html
+       run: redoc-cli bundle@0.10.3 $GITHUB_WORKSPACE -o out/openapi.html
      - name: Generate OpenApi JSON File
-       run: npx @redocly/openapi-cli bundle --output out/openapi.json --ext json $GITHUB_WORKSPACE
+       run: npx @redocly/openapi-cli bundle@0.10.3 --output out/openapi.json --ext json $GITHUB_WORKSPACE
      - name: Move OpenApi YAML File to 'out' Folder
-       run: npx @redocly/openapi-cli bundle --output out/openapi.yaml --ext yaml $GITHUB_WORKSPACE
+       run: npx @redocly/openapi-cli bundle@0.10.3 --output out/openapi.yaml --ext yaml $GITHUB_WORKSPACE
      - name: Set PR Number  
        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
     #  - name: Upload OpenApi HTML,JSON and YAML files to azure
