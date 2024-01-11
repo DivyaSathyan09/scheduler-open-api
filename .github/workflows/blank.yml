@@ -91,8 +91,8 @@ jobs:
      #   run: echo "Document_URL=${{ secrets.AZURE_BLOB_STATIC_WEBSITE }}docs/api/pr/${{env.PR_NUMBER}}" >> $GITHUB_ENV
      - name: Comment PR with Published API Document
        uses: thollander/actions-comment-pull-request@1.0.1
-       with:
+       # with:
         # message: 'Check [published HTML api documentation](GITHUB_WORKSPACE/C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface-o out/openapi.html), [published openapi JSON file](out/openapi.json), [published openapi YAML file](reference/service/amion_Interface/amionInterface.yaml)}'
         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        message: 'Check [published HTML api documentation](dist.html), [published openapi JSON file](dist.json), [published openapi YAML file](dist.yaml) for the PR-${{env.PR_NUMBER}}'
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        # message: 'Check [published HTML api documentation](dist.html), [published openapi JSON file](dist.json), [published openapi YAML file](dist.yaml) for the PR-${{env.PR_NUMBER}}'
+        # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
