@@ -88,10 +88,12 @@ jobs:
     #       connection_string: ${{ secrets.MH_DEV_WEB_STORAGE_ACCESS_KEY }}
     #       extra_args: "--destination-path docs/api/pr/${{env.PR_NUMBER}} --overwrite true"
     #       sync: true
-     - name: Set Document URL for a PR
-       run: echo "Document_URL=${{ secrets.AZURE_BLOB_STATIC_WEBSITE }}docs/api/pr/${{env.PR_NUMBER}}" >> $GITHUB_ENV
+     # - name: Set Document URL for a PR
+     #   run: echo "Document_URL=${{ secrets.AZURE_BLOB_STATIC_WEBSITE }}docs/api/pr/${{env.PR_NUMBER}}" >> $GITHUB_ENV
      - name: Comment PR with Published API Document
        uses: thollander/actions-comment-pull-request@1.0.1
        with:
-          message: 'Check [published HTML api documentation](${{env.Document_URL}}/openapi.html), [published openapi JSON file](${{env.Document_URL}}/openapi.json), [published openapi YAML file](${{env.Document_URL}}/openapi.yaml) for the PR-${{env.PR_NUMBER}}'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+          # message: 'Check [published HTML api documentation](${{env.Document_URL}}/openapi.html), [published openapi JSON file](${{env.Document_URL}}/openapi.json), [published openapi YAML file](${{env.Document_URL}}/openapi.yaml) for the PR-${{env.PR_NUMBER}}'
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+          message: 'Check [published HTML api documentation](openapi.html), [published openapi JSON file](openapi.json), [published openapi YAML file](openapi.yaml) for the PR-${{env.PR_NUMBER}}'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
