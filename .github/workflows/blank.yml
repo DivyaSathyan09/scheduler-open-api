@@ -68,6 +68,9 @@ jobs:
        with:
          name: Combined_OpenApi_File
          path: amionInterface.yml
+     - name: List contents of the workspace
+       run: |
+        ls -R $GITHUB_WORKSPACE
      - name: Generate HTML Documentation
        run: redoc-cli bundle $GITHUB_WORKSPACE/reference/service/amion_Interface -o out/amionInterface.html
      - name: Generate OpenApi JSON File
