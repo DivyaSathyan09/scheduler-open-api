@@ -10,6 +10,9 @@ jobs:
     name: Lint OpenAPI Files  
     # runs-on: [self-hosted, linux, java]
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./react
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
       - uses: actions/checkout@v3
