@@ -67,9 +67,9 @@ jobs:
        uses: actions/upload-artifact@v3
        with:
          name: Combined_OpenApi_File
-         path: openapi.yaml
+         path: amionInterface.yml
      - name: Generate HTML Documentation
-       run: redoc-cli bundle $GITHUB_WORKSPACE/reference/service/amion_Interface -o out/filepaths.html
+       run: redoc-cli bundle $GITHUB_WORKSPACE/reference/service/amion_Interface -o out/amionInterface.html
      - name: Generate OpenApi JSON File
        run: npx @redocly/openapi-cli bundle --output out/openapi.json --ext json $GITHUB_WORKSPACE/reference/filepaths.yaml
      - name: Move OpenApi YAML File to 'out' Folder
