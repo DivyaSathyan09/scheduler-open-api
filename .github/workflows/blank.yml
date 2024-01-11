@@ -71,7 +71,7 @@ jobs:
        run: |
         ls -R $GITHUB_WORKSPACE
      - name: Generate HTML Documentation
-       run: redoc-cli bundle@0.10.3 $GITHUB_WORKSPACE/dist.yaml -o out/dist.html
+       run: redoc-cli bundle -o output_file.html input_openapi_file.yaml
      - name: Generate OpenApi JSON File
        run: npx @redocly/openapi-cli bundle --output out/dist.json --ext json $GITHUB_WORKSPACE/dist.yaml
      - name: Move OpenApi YAML File to 'out' Folder
