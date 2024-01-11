@@ -74,9 +74,9 @@ jobs:
      - name: Generate HTML Documentation
        run: redoc-cli bundle@0.10.3 $GITHUB_WORKSPACE -o out/openapi.html
      - name: Generate OpenApi JSON File
-       run: npx @redocly/openapi-cli bundle@0.10.3 --output out/openapi.json --ext json $GITHUB_WORKSPACE
+       run: npx @redocly/openapi-cli bundle --output out/openapi.json --ext json $GITHUB_WORKSPACE
      - name: Move OpenApi YAML File to 'out' Folder
-       run: npx @redocly/openapi-cli bundle@0.10.3 --output out/openapi.yaml --ext yaml $GITHUB_WORKSPACE
+       run: npx @redocly/openapi-cli bundle --output out/openapi.yaml --ext yaml $GITHUB_WORKSPACE
      - name: Set PR Number  
        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
     #  - name: Upload OpenApi HTML,JSON and YAML files to azure
