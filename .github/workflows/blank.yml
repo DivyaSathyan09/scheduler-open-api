@@ -95,7 +95,7 @@ jobs:
           path: dist.yaml  # Adjust the path based on the actual location of the file
  
       - name: Generate HTML Documentation
-        run: npx @redocly/cli build-docs $GITHUB_WORKSPACE/openapi.yaml -o out/dist.html
+        run: npx @redocly/cli build-docs $GITHUB_WORKSPACE/dist.yaml -o out/dist.html
  
       - name: Generate OpenApi JSON File
         run: npx @redocly/openapi-cli bundle --output out/dist.json --ext json $GITHUB_WORKSPACE/dist.yaml
@@ -125,13 +125,13 @@ jobs:
       #     # message: 'Check [published HTML api documentation](dist.html), [published openapi JSON file](dist.json), [published openapi YAML file](dist.yaml) for the PR-${{env.PR_NUMBER}}'
       #     # message: 'Check [published HTML api documentation](out/dist.html), [published openapi JSON file](out/dist.json), [published openapi YAML file](out/openapi.yaml) for the PR-${{env.PR_NUMBER}}'
       #     message: 'Check [published HTML API documentation](out/dist.html) for the PR-${{env.PR_NUMBER}}'
-      #     GITHUB_TOKEN: ${{ secrets.MSSN_GITHUB_TOKEN }}
+      #     GITHUB_TOKEN: ${{ secrets.MSSN}}
       - name: Set HTML Document URL
         id: set_html_url
-        run: echo "HTML_URL=https://github.com/${{ github.repository }}/blob/${{ github.sha }}/out/filepath.html" >> $GITHUB_ENV
+        run: echo "HTML_URL=https://github.com/${{ github.repository }}/blob/${{ github.sha }}/out/dist.html" >> $GITHUB_ENV
       - name: Comment on PR
         uses: actions-ecosystem/action-create-comment@v1
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: 'Run by ${{ github.actor }} Check [published HTML API documentation]($GITHUB_WORKSPACE/openapi.html) for the PR-${{github.event.issue.number}}'
-          github_token: ${{ secrets.MSSN }}
+          body: 'Run by ${{ github.actor }} Check [published HTML API documentation]($GITHUB_WORKSPACE/dist.yaml) for the PR-${{github.event.issue.number}}'
+          github_token: ${{ secrets.MSSN}}
