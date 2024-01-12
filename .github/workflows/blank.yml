@@ -70,14 +70,14 @@ jobs:
      - name: List contents of the workspace
        run: |
         ls -R $GITHUB_WORKSPACE
-     # - name: Generate HTML Documentation
-     #   run: redoc-cli bundle@0.10.3 $GITHUB_WORKSPACE/dist.yaml -o out/dist.html
-     # - name: Generate OpenApi JSON File
-     #   run: npx @redocly/openapi-cli bundle --output out/dist.json --ext json $GITHUB_WORKSPACE/dist.yaml
-     # - name: Move OpenApi YAML File to 'out' Folder
-     #   run: npx @redocly/openapi-cli bundle --output out/dist.yaml --ext yaml $GITHUB_WORKSPACE/dist.yaml
-     # - name: Set PR Number  
-     #   run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+     - name: Generate HTML Documentation
+       run: redoc-cli bundle@0.10.3 $GITHUB_WORKSPACE/dist.yaml -o out/dist.html
+     - name: Generate OpenApi JSON File
+       run: npx @redocly/openapi-cli bundle --output out/dist.json --ext json $GITHUB_WORKSPACE/dist.yaml
+     - name: Move OpenApi YAML File to 'out' Folder
+       run: npx @redocly/openapi-cli bundle --output out/dist.yaml --ext yaml $GITHUB_WORKSPACE/dist.yaml
+     - name: Set PR Number  
+       run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
      # - name: Upload OpenApi HTML,JSON and YAML files to azure
      #   id: azure_blob
      #   uses: bacongobbler/azure-blob-storage-upload@v1.2.0
@@ -89,29 +89,10 @@ jobs:
      #      sync: true
      # - name: Set Document URL for a PR
      #   run: echo "Document_URL=${{ secrets.AZURE_BLOB_STATIC_WEBSITE }}docs/api/pr/${{env.PR_NUMBER}}" >> $GITHUB_ENV
-     # - name: Comment PR with Published API Document
-     #   uses: thollander/actions-comment-pull-request@1.0.1
-     #   with:
-     #    message: 'Check [published HTML api documentation](GITHUB_WORKSPACE/C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface-o out/openapi.html), [published openapi JSON file](out/openapi.json), [published openapi YAML file](reference/service/amion_Interface/amionInterface.yaml)}'
-     #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-     #     # message: 'Check [published HTML api documentation](dist.html), [published openapi JSON file](dist.json), [published openapi YAML file](dist.yaml) for the PR-${{env.PR_NUMBER}}'
-     #     # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
-     - name: Create Documents Folder
-       run: mkdir -p documents
-
-     - name: Move OpenApi Files to Documents Folder
-       run: mv dist/* documents/
-
-     - name: List contents of the Documents Folder
-       run: ls -R documents/
-
-     - name: Set Document URLs for a PR
-       run: echo "HTML_URL=documents/openapi.html" >> $GITHUB_ENV
-             echo "JSON_URL=documents/openapi.json" >> $GITHUB_ENV
-             echo "YAML_URL=documents/openapi.yaml" >> $GITHUB_ENV
-
      - name: Comment PR with Published API Document
        uses: thollander/actions-comment-pull-request@1.0.1
        with:
-          message: 'Check [published HTML api documentation](${{ env.HTML_URL }}), [published openapi JSON file](${{ env.JSON_URL }}), [published openapi YAML file](${{ env.YAML_URL }}) for the PR-${{env.PR_NUMBER}}'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        message: 'Check [published HTML api documentation](GITHUB_WORKSPACE/C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface-o out/openapi.html), [published openapi JSON file](out/openapi.json), [published openapi YAML file](reference/service/amion_Interface/amionInterface.yaml)}'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         # message: 'Check [published HTML api documentation](dist.html), [published openapi JSON file](dist.json), [published openapi YAML file](dist.yaml) for the PR-${{env.PR_NUMBER}}'
+         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
