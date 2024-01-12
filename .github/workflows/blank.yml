@@ -95,7 +95,7 @@ jobs:
           path: dist.yaml  # Adjust the path based on the actual location of the file
  
       - name: Generate HTML Documentation
-        run: npx @redocly/cli build-docs $GITHUB_WORKSPACE/dist.yaml -o out/dist.html
+        run: npx @redocly/cli build-docs $GITHUB_WORKSPACE/openapi.yaml -o out/dist.html
  
       - name: Generate OpenApi JSON File
         run: npx @redocly/openapi-cli bundle --output out/dist.json --ext json $GITHUB_WORKSPACE/dist.yaml
@@ -133,5 +133,5 @@ jobs:
         uses: actions-ecosystem/action-create-comment@v1
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: 'Run by ${{ github.actor }} Check [published HTML API documentation]($GITHUB_WORKSPACE/dist.html) for the PR-${{github.event.issue.number}}'
+          body: 'Run by ${{ github.actor }} Check [published HTML API documentation]($GITHUB_WORKSPACE/openapi.html) for the PR-${{github.event.issue.number}}'
           github_token: ${{ secrets.MSSN }}
