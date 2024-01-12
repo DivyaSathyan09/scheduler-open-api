@@ -71,15 +71,15 @@ jobs:
       #   run: npx @redocly/openapi-cli join ${{env.Bundled_OpenAPI_File_Paths}}
       # - name: Join OpenApi Files
       #   run:  echo "OpenAPI_File_Paths=${{env.OpenAPI_File_Paths}}"
-      #     npx @redocly/cli bundle@0.10.3 --output dist --ext yaml ${{env.Bundled_OpenAPI_File_Paths}}
+      #     npx @redocly/cli bundle@0.10.3 --output dist/amionInterface.yaml --ext yaml ${{env.Bundled_OpenAPI_File_Paths}}
       - name: Bundle OpenApi Files     
-        run: npx @redocly/openapi-cli bundle --output dist --ext yaml ${{env.OpenAPI_File_Paths}}
+        run: npx @redocly/openapi-cli bundle --output dist/amionInterface.yaml --ext yaml ${{env.OpenAPI_File_Paths}}
  
       - name: Join OpenApi Files
         run:  echo "OpenAPI_File_Paths=${{env.OpenAPI_File_Paths}}"
-          npx @redocly/cli bundle@0.10.3 --output dist --ext yaml ${{env.Bundled_OpenAPI_File_Paths}}
+          npx @redocly/cli bundle@0.10.3 --output dist/amionInterface.yaml --ext yaml ${{env.Bundled_OpenAPI_File_Paths}}
       # - name: Join OpenApi Files
-      #   run: npx @redocly/openapi-cli bundle dist/amionInterface.yaml
+      #   run: npx @redocly/openapi-cli bundle dist/amionInterface.yaml/amionInterface.yaml
         # - name: Upload Combined OpenApi File
         #   uses: actions/upload-artifact@v3
         #   with:
@@ -92,16 +92,16 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Combined_OpenApi_File
-          path: reference/service/amion_Interface/amionInterface.yaml  # Adjust the path based on the actual location of the file
+          path: dist/amionInterface.yaml  # Adjust the path based on the actual location of the file
  
       - name: Generate HTML Documentation
-        run: npx @redocly/cli build-docs $GITHUB_WORKSPACE/reference/service/amion_Interface/amionInterface.yaml -o out/amionInterface.html
+        run: npx @redocly/cli build-docs $GITHUB_WORKSPACE/dist/amionInterface.yaml -o out/dist/amionInterface.yaml
  
       - name: Generate OpenApi JSON File
-        run: npx @redocly/openapi-cli bundle --output out/dist.json --ext json $GITHUB_WORKSPACE/dist.yaml
+        run: npx @redocly/openapi-cli bundle --output out/dist/amionInterface.yaml --ext json $GITHUB_WORKSPACE/dist/amionInterface.yaml
  
       - name: Move OpenApi YAML File to 'out' Folder
-        run: npx @redocly/openapi-cli bundle --output out/dist.yaml --ext yaml $GITHUB_WORKSPACE/dist.yaml
+        run: npx @redocly/openapi-cli bundle --output out/dist/amionInterface.yaml --ext yaml $GITHUB_WORKSPACE/dist/amionInterface.yaml
  
       - name: Set PR Number
         run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
@@ -122,16 +122,16 @@ jobs:
       # - name: Comment PR with Published API Document
       #   uses: thollander/actions-comment-pull-request@1.0.1
       #   with:
-      #     # message: 'Check [published HTML api documentation](dist.html), [published openapi JSON file](dist.json), [published openapi YAML file](dist.yaml) for the PR-${{env.PR_NUMBER}}'
-      #     # message: 'Check [published HTML api documentation](out/dist.html), [published openapi JSON file](out/dist.json), [published openapi YAML file](out/openapi.yaml) for the PR-${{env.PR_NUMBER}}'
-      #     message: 'Check [published HTML API documentation](out/dist.html) for the PR-${{env.PR_NUMBER}}'
-      #     GITHUB_TOKEN: ${{ secrets.MSSN}}
+      #     # message: 'Check [published HTML api documentation](dist/amionInterface.yaml.html), [published openapi JSON file](dist/amionInterface.yaml.json), [published openapi YAML file](dist/amionInterface.yaml.yaml) for the PR-${{env.PR_NUMBER}}'
+      #     # message: 'Check [published HTML api documentation](out/dist/amionInterface.yaml.html), [published openapi JSON file](out/dist/amionInterface.yaml.json), [published openapi YAML file](out/openapi.yaml) for the PR-${{env.PR_NUMBER}}'
+      #     message: 'Check [published HTML API documentation](out/dist/amionInterface.yaml.html) for the PR-${{env.PR_NUMBER}}'
+      #     GITHUB_TOKEN: ${{ secrets.MSSN_GITHUB_TOKEN }}
       - name: Set HTML Document URL
         id: set_html_url
-        run: echo "HTML_URL=https://github.com/${{ github.repository }}/blob/${{ github.sha }}/reference/service/amion_Interface/amionInterface.yaml" >> $GITHUB_ENV
+        run: echo "HTML_URL=https://github.com/${{ github.repository }}/blob/${{ github.sha }}/out/dist/amionInterface.yaml" >> $GITHUB_ENV
       - name: Comment on PR
         uses: actions-ecosystem/action-create-comment@v1
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: 'Run by ${{ github.actor }} Check [published HTML API documentation]($GITHUB_WORKSPACE/reference/service/amion_Interface/amionInterface.yaml) for the PR-${{github.event.issue.number}}'
-          github_token: ${{ secrets.MSSN}}
+          body: 'Run by ${{ github.actor }} Check [published HTML API documentation]($GITHUB_WORKSPACE/dist/amionInterface.yaml) for the PR-${{github.event.issue.number}}'
+          github_token: ${{ secrets.MSSN }}
