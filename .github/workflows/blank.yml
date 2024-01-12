@@ -128,7 +128,7 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.MSSN_GITHUB_TOKEN }}
       - name: Set HTML Document URL
         id: set_html_url
-        run: echo "HTML_URL=https://github.com/${{ github.repository }}/blob/${{ github.sha }}/out/dist.html" >> $GITHUB_ENV
+        run: echo "HTML_URL=https://github.com/${{ github.repository }}/blob/${{ github.sha }}/out/openapi.html" >> $GITHUB_ENV
       - name: Comment on PR
         uses: actions-ecosystem/action-create-comment@v1
         with:
