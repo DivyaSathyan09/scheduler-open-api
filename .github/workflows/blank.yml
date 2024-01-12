@@ -97,10 +97,10 @@ jobs:
        run: mkdir -p documents
 
      - name: Move OpenApi Files to Documents Folder
-       run: C:/Users/divya.sathyan/Documents/Stoplight Studio
+       run: GITHUB_WORKSPACE/C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface
 
      - name: List contents of the Documents Folder
-       run: ls -R C:/Users/divya.sathyan/Documents/Stoplight Studio
+       run: ls -R GITHUB_WORKSPACE/C:/divya/work/scheduler-open-api/scheduler-open-api/reference/service/amion_Interface
 
      - name: Set Document URLs for a PR
        run: echo "HTML_URL=documents/openapi.html" >> $GITHUB_ENV
