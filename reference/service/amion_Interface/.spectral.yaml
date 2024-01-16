@@ -1,0 +1,17 @@
+formats:
+  - oas3
+extends:
+  - 'spectral:oas'
+rules:
+  info-contact-matches-Mobile Heartbeat:
+    description: This is an example rule
+    message: Info must contain Mobile Heartbeat
+    given: $.info
+    recommended: true
+    type: style
+    then:
+      field: contact
+      function: pattern
+      functionOptions:
+        match: Mobile Heartbeat
+    severity: warn
